@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-import random
 import sys
 
 from player import Player
-from card import Card
 from deck import Deck
 
 # The game starts with 5000 cash
@@ -12,6 +10,7 @@ winner    = 0
 
 class Blackjack():
     winning_number = 21
+
 
     def __init__(self):
         self.stand       = False
@@ -44,7 +43,6 @@ class Blackjack():
         else:
             # The last condition is where both have not
             # exceeded the score
-            
             if (abs(Blackjack.winning_number - player_score) < 
                     (Blackjack.winning_number - dealer_score)):
                 winner = player
@@ -56,12 +54,11 @@ class Blackjack():
                 winner = None
             else:
                 winner = None
-        
         return winner   
 
-    def check_game_over(self, player, dealer, stand):
+    def check_game_over(self, player, dealer):
         ''' Checks if the game is over '''
-        if stand:
+        if self.stand:
             return True
         elif (player.get_score() > Blackjack.winning_number or
                 dealer.get_score() > Blackjack.winning_number or
@@ -101,7 +98,7 @@ class Blackjack():
         dealer.show_hand(True)
 
         self.stand       = False
-        self.game_over   = self.check_game_over(player, dealer, stand)
+        self.game_over   = self.check_game_over(player, dealer)
         self.double_down = True
 
         while self.stand is not True and self.game_over is not True:
@@ -126,7 +123,7 @@ class Blackjack():
                     print('Unknown input sir!!')
 
             # After every play, print the current deck
-            self.game_over = self.check_game_over(player, dealer, stand)
+            self.game_over = self.check_game_over(player, dealer)
 
             print()
             player.show_hand()
