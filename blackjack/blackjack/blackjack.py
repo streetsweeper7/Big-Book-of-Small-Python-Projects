@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import sys
 
-from player import Player
-from deck import Deck
+from .player import Player
+from .deck import Deck
 
 # The game starts with 5000 cash
 game_over = False
