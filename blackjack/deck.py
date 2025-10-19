@@ -1,11 +1,12 @@
 import random
+from card import Card
 
 # Create a deck class
 class Deck():
     def __init__(self):
         self.ranks = range(1, 14)
         self.suits = range(0, 4)
-        self.cards = [Card(rank, suit) for suit in suits for rank in ranks]
+        self.cards = [Card(rank, suit) for suit in self.suits for rank in self.ranks]
         random.shuffle(self.cards)
     
     def deal_card(self):
