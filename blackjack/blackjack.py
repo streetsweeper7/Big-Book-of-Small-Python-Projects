@@ -73,8 +73,8 @@ class Blackjack():
         # Otherwise, convert safely
         while True:
             try:
-                bet_input = input(f"How much do you bet? "
-                                   "(1 - {player.cash}, "
+                bet_input = input("How much do you bet? "
+                                   f"(1 - {player.cash}, "
                                    "or QUIT) > ").strip()
 
                 if bet_input.lower() == "quit":
@@ -115,7 +115,7 @@ class Blackjack():
                     if (dealer.get_score() < 17):
                         dealer.deal(deck.deal_card())
                 case 's':
-                    stand = True
+                    self.stand = True
                 case 'd':
                     # The player wants to double down:
                     self.make_bet(player)
@@ -127,7 +127,7 @@ class Blackjack():
 
             print()
             player.show_hand()
-            dealer.show_hand(hide_top_card=(not game_over))
+            dealer.show_hand(hide_top_card=(not self.game_over))
 
 
     def print_banner(self):
@@ -163,9 +163,9 @@ def main():
 
     # Initialise the players
     game   = Blackjack()
-    player = Player("Player") 
-    dealer = Player("Dealer") 
     deck   = Deck()
+    player = Player("Player", deck) 
+    dealer = Player("Dealer", deck) 
     print()
 
     # Print the banner and instructions
